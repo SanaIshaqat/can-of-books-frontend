@@ -7,6 +7,8 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import BestBooks from './BestBooks';
+
 
 class App extends React.Component {
 
@@ -32,16 +34,17 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Router>
+        <BestBooks/>
+        {/* <Router>
           <Header user={this.state.user} onLogout={this.logoutHandler} />
-          <Switch>
-            <Route exact path="/">
+          <Switch> */}
+            {/* <Route exact path="//get-data"> */}
               {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
-            </Route>
+            {/* </Route> */}
             {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
-          </Switch>
+          {/* </Switch>
           <Footer />
-        </Router>
+        </Router> */}
       </>
     )
   }
