@@ -1,21 +1,24 @@
 import React from 'react';
 import axios from 'axios';
+import { Carousel } from 'react-bootstrap';
+
 
 class BestBooks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       books: [],
-      showData:false
+      showData: false
     }
   }
-  componentDidMount = () => {
-    axios.get(`${process.env.MONGO_SERVER}/get-data`).then(response => {
+  componentDidMount = async () => {
+    axios.get(`${process.env.REACT_APP_BACKEND_SERVER}/get-data`).then(response => {
       this.setState({
-        books: response.books,
-        showData:true
+        books: response.data,
+        showData: true
 
       });
+      console.log(response.data);
     })
 
   };
@@ -28,20 +31,67 @@ class BestBooks extends React.Component {
     /* TODO: render user's books in a Carousel */
 
     return (
-      <>
-        <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
+     
 
-        {/* {this.state.books.length ? ( */}
-          {/* <p>Book Carousel coming soon</p>
+      <>
+      
+        <h1>My Essential Lifelong Learning &amp; Formation Shelf</h1>
+        <h2>Books By Author</h2>,
+
+        {this.state.books.length ? (
+        //  <p>Book Carousel coming soon</p>,
+        
+         this.state.showData &&
+           this.state.books.map(post => {
+             return (
+               <>
+ 
+                 <h3>Author: {post.name} </h3>
+                 <br />
+                 {post.books.map(book => {
+ 
+                   return (
+                  //   <Carousel>
+                  //   <Carousel.Item>
+                  //     <img
+                  //       className="d-block w-100"
+                  //       src="https://cdn.lifehack.org/wp-content/uploads/2015/03/50-anniversary-cover1.jpg"
+                  //       alt="First slide"
+                  //     />
+                  //     <Carousel.Caption>
+                  //       <h3>{book.title}</h3>
+                  //       <p>{book.description}</p>
+                  //     </Carousel.Caption>
+                  //   </Carousel.Item>
+                  // </Carousel>
+
+                   <h3>Title:<br /> {book.title}
+                   <br />
+                   <br />
+                   Description:<br /> {book.description}
+                   <br />
+                   <br />
+                   Status:<br /> {book.status}
+                   <br /><br />
+                   Email:<br /> {book.email}
+                   <br /><br />
+                   <br /><br />
+                   </h3>
+                   
+                           
+                   )
+ 
+                 })}
+               </>
+             )
+ 
+ 
+           })
+         
         ) : (
           <h3>No Books Found :(</h3>
-        )} */}
-        <h1>Data</h1>
-        {this.state.showData &&
-          this.state.books.map(post => {
-            return <h2>title={post.title} </h2>
-          })
-        }
+        )} 
+       
       </>
     )
   }
