@@ -99,7 +99,7 @@ class App extends React.Component {
   handleUpdateForm=()=>{
     let config={
       method:"PUT",
-      baseURL:process.env.REACT_APP_BACKEND_URL,
+      baseURL:process.env.REACT_APP_BACKEND_SERVER,
       url:`/update-data/${this.state.id}`,
       data:{
         title:this.state.title,
@@ -132,8 +132,10 @@ class App extends React.Component {
              /* TODO: add a route with a path of '/profile' that renders a `Profile` component */
           </Switch>
           <br />
-          
-          <Form onSubmit={this.handleSubmit}>
+          <div>
+            {
+            !this.state.showUpdate?<>
+              <Form onSubmit={this.handleSubmit}>
             <Form.Group className="mb-3" >
               <Form.Label>Book Title</Form.Label>
               <Form.Control type="text" placeholder="title" onChange={this.handleTitle} />
@@ -147,8 +149,28 @@ class App extends React.Component {
               <Button variant="dark" value="create" type="submit" >Submit</Button>
             </Form.Group>
           </Form>
-          <br />
-
+            </>:
+            
+            <Form onSubmit={this.handleUpdateForm}>
+              <Form.Group className="mb-3" >
+                <Form.Label>Book Title</Form.Label>
+                <Form.Control type="text" onChange={this.handleTitle} value={this.state.title}/>
+                <Form.Label>Book Description</Form.Label>
+                <Form.Control type="text" onChange={this.handleDescription} value={this.state.description} />
+                <Form.Label>Book Status</Form.Label>
+                <Form.Control type="text" onChange={this.handleStatus} value={this.state.status} />
+                <Form.Label>Contact Email</Form.Label>
+                <Form.Control type="text" onChange={this.handleEmail} value={this.state.email} />
+                <br />
+                <Button variant="dark" value="update" type="submit" >Update</Button>
+              </Form.Group>
+            </Form>
+            
+            }
+          
+          
+  
+          </div>
           {
             this.state.books.map(book => {
               return <BestBooks title={book.title}

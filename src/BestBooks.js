@@ -42,7 +42,9 @@ class BestBooks extends React.Component {
               <p><h3>Email:</h3>{this.props.email}</p>
               <p><h3>Id:</h3>{this.props.id}</p>
               <br />
-              <Button onclick={()=>{this.props.handleDelete(this.props.id)}} variant="dark">Delete</Button> 
+              <Button onClick={()=>{this.props.handleDelete(this.props.id)}} variant="dark">Delete</Button> <br />
+              <br />
+              <Button onClick={()=>{this.props.handleUpdate(this.props.id,this.props.title,this.props.description,this.props.status,this.props.email)}} variant="dark">Update</Button> <br />
               <br />
               </>
         //     )
