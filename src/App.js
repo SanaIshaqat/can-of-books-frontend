@@ -8,10 +8,11 @@ import {
   Route
 } from "react-router-dom";
 import BestBooks from './BestBooks';
+import LoginButton from './components/LoginButton';
+import LogoutButton from './components/LogoutButton';
 import axios from 'axios';
 import { Form, Button } from "react-bootstrap";
-
-
+import {withAuth0} from "@auth0/auth0-react";
 class App extends React.Component {
 
   constructor(props) {
@@ -25,7 +26,7 @@ class App extends React.Component {
       description: " ",
       status: " ",
       email: " ",
-
+     
 
     }
   }
@@ -115,10 +116,6 @@ class App extends React.Component {
     });
   }
 
-
-
-
-
   render() {
     return (
       <>
@@ -131,6 +128,22 @@ class App extends React.Component {
             </Route>
              /* TODO: add a route with a path of '/profile' that renders a `Profile` component */
           </Switch>
+          <br />
+          <div>
+        {/* {
+          this.props.auth0.isAuthenticated?
+          <>
+          <LogoutButton/>
+          <h1>{this.props.auth0.user.name}</h1>
+          <img src={this.props.auth0.user.picture} alt=""/>
+          <BestBooks/>
+          <Button callApi={this.callApi}/>
+          </>:
+          <LoginButton/>
+        } */}
+        
+        
+      </div>
           <br />
           <div>
             {
@@ -149,8 +162,7 @@ class App extends React.Component {
               <Button variant="dark" value="create" type="submit" >Submit</Button>
             </Form.Group>
           </Form>
-            </>:
-            
+            </>:     
             <Form onSubmit={this.handleUpdateForm}>
               <Form.Group className="mb-3" >
                 <Form.Label>Book Title</Form.Label>
@@ -164,12 +176,8 @@ class App extends React.Component {
                 <br />
                 <Button variant="dark" value="update" type="submit" >Update</Button>
               </Form.Group>
-            </Form>
-            
+            </Form>   
             }
-          
-          
-  
           </div>
           {
             this.state.books.map(book => {
@@ -180,18 +188,13 @@ class App extends React.Component {
                 handleDelete={this.handleDelete}
                 handleUpdate={this.handleUpdate} />
             })
-
           }
-
-
           <Footer />
         </Router>
       </>
-
-
     )
   }
 }
 
 
-export default App;
+export default withAuth0(App) ;
