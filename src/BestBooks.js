@@ -35,12 +35,12 @@ class BestBooks extends React.Component {
             return (
               <> */}
               <br />
-             <h1>{this.props.title} </h1> 
+             <h2>{this.props.title} </h2> 
               <br />
               <p><h3>Description:</h3>{this.props.description}</p>
               <p><h3>Status:</h3>{this.props.status}</p>
               <p><h3>Email:</h3>{this.props.email}</p>
-              <p><h3>Id:</h3>{this.props.id}</p>
+              {/* <p><h3>Id:</h3>{this.props.id}</p> */}
               <br />
               <Button onClick={()=>{this.props.handleDelete(this.props.id)}} variant="dark">Delete</Button> <br />
               <br />

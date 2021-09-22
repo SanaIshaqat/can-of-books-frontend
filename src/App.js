@@ -137,14 +137,14 @@ class App extends React.Component {
             !this.state.showUpdate?<>
               <Form onSubmit={this.handleSubmit}>
             <Form.Group className="mb-3" >
-              <Form.Label>Book Title</Form.Label>
-              <Form.Control type="text" placeholder="title" onChange={this.handleTitle} />
-              <Form.Label>Book Description</Form.Label>
-              <Form.Control type="text" placeholder="description" onChange={this.handleDescription} />
-              <Form.Label>Book Status</Form.Label>
-              <Form.Control type="text" placeholder="Enter Book Status" onChange={this.handleStatus} />
-              <Form.Label>Contact Email</Form.Label>
-              <Form.Control type="text" placeholder="Enter Contact Email" onChange={this.handleEmail} />
+              <Form.Label><h2>Book Title</h2></Form.Label>
+              <Form.Control type="text" placeholder="Enter Book Title" size="lg" onChange={this.handleTitle} />
+              <Form.Label><h2>Book Description</h2></Form.Label>
+              <Form.Control type="text" placeholder="Enter Book Description" size="lg" onChange={this.handleDescription} />
+              <Form.Label><h2>Book Status</h2></Form.Label>
+              <Form.Control type="text" placeholder="Enter Book Status" size="lg" onChange={this.handleStatus} />
+              <Form.Label><h2>Contact Email</h2></Form.Label>
+              <Form.Control type="text" placeholder="Enter Contact Email" size="lg" onChange={this.handleEmail} />
               <br />
               <Button variant="dark" value="create" type="submit" >Submit</Button>
             </Form.Group>
